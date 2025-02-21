@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Tempo para Concluir Curso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Calculadora de Tempo para Concluir Curso</h1>
+        <label for="totalHours">Total de horas do curso:</label>
+        <input type="number" id="totalHours" placeholder="Ex: 40">
+
+        <label for="hoursPerDay">Horas disponíveis por dia:</label>
+        <input type="number" id="hoursPerDay" placeholder="Ex: 2">
+
+        <label for="daysPerWeek">Dias disponíveis por semana:</label>
+        <input type="number" id="daysPerWeek" placeholder="Ex: 5">
+
+        <button onclick="calculateTime()">Calcular</button>
+
+        <!-- Aqui o resultado será exibido -->
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function calculateTime() {
+            // Captura os valores dos inputs
+            const totalHours = parseFloat(document.getElementById('totalHours').value);
+            const hoursPerDay = parseFloat(document.getElementById('hoursPerDay').value);
+            const daysPerWeek = parseFloat(document.getElementById('daysPerWeek').value);
+
+            // Validação dos inputs
+            if (isNaN(totalHours) || isNaN(hoursPerDay) || isNaN(daysPerWeek)) {
+                alert("Por favor, preencha todos os campos corretamente.");
+                return;
+            }
+
+            // Cálculo do tempo total
+            const hoursPerWeek = hoursPerDay * daysPerWeek;
+            const totalWeeks = totalHours / hoursPerWeek;
+
+            // Exibe o resultado
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `
+                <p>Você levará aproximadamente <strong>${totalWeeks.toFixed(1)} semanas</strong> para concluir o curso.</p>
+                <p>Isso equivale a cerca de <strong>${(totalWeeks / 4.345).toFixed(1)} meses</strong>.</p>
+            `;
+        }
+    </script>
+</body>
+</html>
